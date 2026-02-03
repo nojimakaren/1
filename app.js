@@ -1,4 +1,11 @@
- // map.js
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高知県観光スポット地図</title>
+
+// map.js
 
 // 1. 地図初期表示（高知県全体）
 const map = L.map('map').setView([33.4, 133.4], 8);
