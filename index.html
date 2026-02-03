@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>県外の人にわかりやすい 高知県観光マップ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  }
+  h1 {
+    margin: 0;
+    padding: 12px;
+    background: #1e90a8;
+    color: #fff;
+    text-align: center;
+  }
+  p {
+    margin: 0;
+    padding: 8px;
+    background: #eef7f9;
+    text-align: center;
+    font-size: 14px;
+  }
+  #map {
+    height: calc(100vh - 120px);
+  }
+  .legend {
+    background: white;
+    padding: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<h1>高知県 観光スポットマップ</h1>
+<p>
+  観光地紹介
+</p>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
