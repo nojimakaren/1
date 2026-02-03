@@ -6,24 +6,38 @@
   <title>高知県観光スポット地図</title>
 
   <!-- Leaflet CSS -->
-  <link 
-    rel="stylesheet" 
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
-    crossorigin=""
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 
   <style>
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
+      font-family: sans-serif;
     }
 
     #map {
       width: 100%;
       height: 100vh;
+      position: relative;
     }
 
+    /* タイトルを地図上に重ねる */
+    #map-title {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.8);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 24px;
+      font-weight: bold;
+      z-index: 1000; /* 地図より前面 */
+      pointer-events: none; /* 地図操作を妨げない */
+    }
+
+    /* 凡例スタイル */
     .legend {
       background: white;
       padding: 6px 8px;
@@ -36,7 +50,9 @@
 </head>
 <body>
 
-<div id="map"></div>
+<div id="map">
+  <div id="map-title">高知県観光スポット地図</div>
+</div>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -66,7 +82,7 @@
     sea: createIcon('blue')
   };
 
-  // 観光スポットデータ
+  // 観光スポットデータ（すべて）
   const spots = [
     // 香北町
     { name: "やなせたかし記念館", area: "香北町", genre: "歴史・文化", icon: icons.history, lat: 33.5645, lng: 133.5621, station: "高知駅から車で約40分", airport: "高知龍馬空港から車で約30分", budget: "入館料 約800円", homepage: "https://anpanman-museum.net/", youtube: "https://www.youtube.com/results?search_query=やなせたかし記念館" },
@@ -119,7 +135,7 @@
     return div;
   };
   legend.addTo(map);
-
 </script>
+
 </body>
 </html>
