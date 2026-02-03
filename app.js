@@ -1,13 +1,17 @@
-// 地図の初期表示（高知県全体）
+// -------------------------------
+// 高知県観光スポット地図（Leaflet.js）
+// -------------------------------
+
+// 1. 地図初期表示（高知県全体）
 const map = L.map("map").setView([33.4, 133.4], 8);
 
-// 地図タイル
+// 2. 地図タイル（OpenStreetMap）
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
-// 色付きマーカー作成
-function createIcon(color) {
+// 3. カラーマーカー作成関数
+const createIcon = (color) => {
   return new L.Icon({
     iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
     shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
@@ -15,16 +19,16 @@ function createIcon(color) {
     iconAnchor: [12, 41],
     popupAnchor: [1, -34]
   });
-}
+};
 
-// ジャンル別アイコン
+// 4. ジャンル別アイコン
 const icons = {
   nature: createIcon("green"),   // 自然
   history: createIcon("red"),    // 歴史・文化
   sea: createIcon("blue")        // 海
 };
 
-// 観光スポットデータ（すべて統合）
+// 5. 観光スポットデータ
 const spots = [
   // 香北町
   {
@@ -32,7 +36,8 @@ const spots = [
     area: "香北町",
     genre: "歴史・文化",
     icon: icons.history,
-    lat: 33.5645, lng: 133.5621,
+    lat: 33.5645,
+    lng: 133.5621,
     station: "高知駅から車で約40分",
     airport: "高知龍馬空港から車で約30分",
     budget: "入館料 約800円",
@@ -44,7 +49,8 @@ const spots = [
     area: "香北町",
     genre: "自然",
     icon: icons.nature,
-    lat: 33.5530, lng: 133.5850,
+    lat: 33.5530,
+    lng: 133.5850,
     station: "高知駅から車で約40分",
     airport: "高知龍馬空港から車で約30分",
     budget: "散策無料",
@@ -56,21 +62,22 @@ const spots = [
     area: "香北町",
     genre: "自然",
     icon: icons.nature,
-    lat: 33.5815, lng: 133.5610,
+    lat: 33.5815,
+    lng: 133.5610,
     station: "高知駅から車で約40分",
     airport: "高知龍馬空港から車で約25分",
     budget: "入園無料",
     homepage: "https://www.city.kami.lg.jp/soshiki/shizen/256.html",
     youtube: "https://www.youtube.com/results?search_query=野市動物公園"
   },
-
   // 高知市
   {
     name: "高知城",
     area: "高知市",
     genre: "歴史・文化",
     icon: icons.history,
-    lat: 33.5597, lng: 133.5311,
+    lat: 33.5597,
+    lng: 133.5311,
     station: "高知駅から徒歩約20分／路面電車約15分",
     airport: "高知龍馬空港からバスで約30分",
     budget: "入場料 約500円",
@@ -82,7 +89,8 @@ const spots = [
     area: "高知市",
     genre: "海",
     icon: icons.sea,
-    lat: 33.4969, lng: 133.5736,
+    lat: 33.4969,
+    lng: 133.5736,
     station: "高知駅からバスで約30分",
     airport: "高知龍馬空港から車で約30分",
     budget: "散策無料（周辺施設 500〜1,500円）",
@@ -94,21 +102,22 @@ const spots = [
     area: "高知市",
     genre: "歴史・文化",
     icon: icons.history,
-    lat: 33.5592, lng: 133.5335,
+    lat: 33.5592,
+    lng: 133.5335,
     station: "高知駅から徒歩約10分",
     airport: "高知龍馬空港から車で約25分",
     budget: "散策無料（買い物や食事は別）",
     homepage: "https://obiyamachi.com/",
     youtube: "https://www.youtube.com/results?search_query=帯屋町商店街"
   },
-
   // 室戸町
   {
     name: "室戸岬",
     area: "室戸町",
     genre: "海",
     icon: icons.sea,
-    lat: 33.2625, lng: 134.0950,
+    lat: 33.2625,
+    lng: 134.0950,
     station: "高知駅から車で約2時間",
     airport: "高知龍馬空港から車で約2時間",
     budget: "見学無料（移動費別）",
@@ -120,21 +129,22 @@ const spots = [
     area: "室戸町",
     genre: "自然",
     icon: icons.nature,
-    lat: 33.2733, lng: 134.1052,
+    lat: 33.2733,
+    lng: 134.1052,
     station: "高知駅から車で約2時間",
     airport: "高知龍馬空港から車で約2時間",
     budget: "入館料 約300円",
     homepage: "https://muroto-geo.jp/",
     youtube: "https://www.youtube.com/results?search_query=室戸ジオパーク"
   },
-
   // 四万十町
   {
     name: "四万十川",
     area: "四万十町",
     genre: "自然",
     icon: icons.nature,
-    lat: 32.9918, lng: 132.9333,
+    lat: 32.9918,
+    lng: 132.9333,
     station: "高知駅から車で約2時間",
     airport: "高知龍馬空港から車で約2時間30分",
     budget: "散策無料／体験 3,000〜7,000円",
@@ -146,21 +156,22 @@ const spots = [
     area: "四万十町",
     genre: "自然",
     icon: icons.nature,
-    lat: 33.0265, lng: 132.8951,
+    lat: 33.0265,
+    lng: 132.8951,
     station: "高知駅から車で約2時間",
     airport: "高知龍馬空港から車で約2時間30分",
     budget: "見学無料",
     homepage: "https://www.shimanto-kankou.com/",
     youtube: "https://www.youtube.com/results?search_query=佐田沈下橋"
   },
-
   // 仁淀町
   {
     name: "仁淀川（仁淀ブルー）",
     area: "仁淀町",
     genre: "自然",
     icon: icons.nature,
-    lat: 33.6700, lng: 133.4620,
+    lat: 33.6700,
+    lng: 133.4620,
     station: "高知駅から車で約1時間30分",
     airport: "高知龍馬空港から車で約1時間30分",
     budget: "散策無料／体験 3,000〜6,000円",
@@ -172,7 +183,8 @@ const spots = [
     area: "仁淀町",
     genre: "自然",
     icon: icons.nature,
-    lat: 33.6811, lng: 133.4458,
+    lat: 33.6811,
+    lng: 133.4458,
     station: "高知駅から車で約1時間30分",
     airport: "高知龍馬空港から車で約1時間30分",
     budget: "入場無料",
@@ -181,31 +193,31 @@ const spots = [
   }
 ];
 
-// マーカー表示（詳細情報つき）
-spots.forEach(s => {
-  L.marker([s.lat, s.lng], { icon: s.icon })
+// 6. マーカー作成（詳細情報ポップアップ）
+spots.forEach(spot => {
+  L.marker([spot.lat, spot.lng], { icon: spot.icon })
     .addTo(map)
     .bindPopup(`
-      <strong>${s.name}</strong><br>
-      【${s.area}／${s.genre}】<br><br>
+      <strong>${spot.name}</strong><br>
+      【${spot.area}／${spot.genre}】<br><br>
 
       🚉 <strong>高知駅から</strong><br>
-      ${s.station}<br><br>
+      ${spot.station}<br><br>
 
       ✈️ <strong>高知龍馬空港から</strong><br>
-      ${s.airport}<br><br>
+      ${spot.airport}<br><br>
 
       💰 <strong>予算の目安</strong><br>
-      ${s.budget}<br><br>
+      ${spot.budget}<br><br>
 
-      🌐 <a href="${s.homepage}" target="_blank">公式ホームページ</a><br>
-      ▶ <a href="${s.youtube}" target="_blank">YouTube動画を見る</a>
+      🌐 <a href="${spot.homepage}" target="_blank">公式ホームページ</a><br>
+      ▶ <a href="${spot.youtube}" target="_blank">YouTube動画を見る</a>
     `);
 });
 
-// 凡例（色分け説明）
+// 7. 凡例（ジャンルの色分け説明）
 const legend = L.control({ position: "bottomright" });
-legend.onAdd = function () {
+legend.onAdd = () => {
   const div = L.DomUtil.create("div", "legend");
   div.innerHTML = `
     <strong>ジャンル</strong><br>
